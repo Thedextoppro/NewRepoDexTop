@@ -1,0 +1,118 @@
+{
+  "name": "Hendotech",
+  "timestamp": "2022-01-26T11:45:09Z",
+  "version": {
+    "major": 4,
+    "minor": 0,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "https://dextop.pro/logo.png",
+  "keywords": ["pancake", "default"],
+  "tokens": [
+    {
+      "name": "DexTop",
+      "symbol": "DEX",
+      "address": "0x57953dAC106a4cDa11D90273b1B9D59E169533c0",
+      "chainId": 369,
+      "decimals": 18,
+      "logoURI": "/images/logo.jpg"
+    },
+    {
+      "name": "Degen Anonymous",
+      "symbol": "ANON",
+      "address": "0x075F7F657AEAD0e698EDb4E0A47d1DEF869536B4",
+      "chainId": 369,
+      "decimals": 18,
+      "logoURI": "https://bafybeihaflhk73gqke5j3mjewfz2k2vf3zar4f2cqpyscw2vhwym7xhfke.ipfs.nftstorage.link/photo_2024-01-28_14-45-37.jpg"
+    },
+    {
+      "name": "ApinPulse",
+      "symbol": "APC",
+      "address": "0xBb101431d43b0E1fc31f000bf96826794806e0b4",
+      "chainId": 369,
+      "decimals": 18,
+      "logoURI": "https://cdn.dexscreener.com/https://assets.coingecko.com/coins/images/31094/large/m_gH0JjI_400x400.jpg?1696529926"
+    },
+    {
+      "name": "RH Louis Vuitton Bag",
+      "symbol": "BAG",
+      "address": "0x9966bDcbe018540A974B44CEcCD61E369aD6640D",
+      "chainId": 369,
+      "decimals": 8,
+      "logoURI": "https://bafybeidd5uofksyfcmcn3upm5hnfbwwalebkq55j7bt2i3ak7cct27qwei.ipfs.nftstorage.link/baggss.jpg"
+    },
+    {
+      "name": "Caviar",
+      "symbol": "CAVIAR",
+      "address": "0x8C5eB0F7007c374D6FE14627259B99a5e9613C84",
+      "chainId": 369,
+      "decimals": 18,
+      "logoURI": "https://bafybeialmxubiduarkagecfrh4tqh24d7to5s4jixh4avcvmqjogwxqzyq.ipfs.nftstorage.link/photo_2024-02-12_17-38-12.jpg"
+    },
+    {
+      "name": "PulseX",
+      "symbol": "PLSX",
+      "address": "0x95B303987A60C71504D99Aa1b13B4DA07b0790ab",
+      "chainId": 369,
+      "decimals": 18,
+      "logoURI": "https://dex.dextop.pro/images/tokens/0x95B303987A60C71504D99Aa1b13B4DA07b0790ab.png"
+    },
+    {
+      "name": "Wrapped BTC from Ethereum",
+      "symbol": "WBTC",
+      "address": "0xb17D901469B9208B17d916112988A3FeD19b5cA1",
+      "chainId": 369,
+      "decimals": 8,
+      "logoURI": "https://dex.dextop.pro/images/tokens/0xb17D901469B9208B17d916112988A3FeD19b5cA1.png"
+    },
+    {
+      "name": "Dai Stablecoin from Ethereum",
+      "symbol": "DAI",
+      "address": "0xefD766cCb38EaF1dfd701853BFCe31359239F305",
+      "chainId": 369,
+      "decimals": 18,
+      "logoURI": "https://dex.dextop.pro/images/tokens/0xefD766cCb38EaF1dfd701853BFCe31359239F305.png"
+    },
+    {
+      "name": "HEX",
+      "symbol": "HEX",
+      "address": "0x2b591e99afE9f32eAA6214f7B7629768c40Eeb39",
+      "chainId": 369,
+      "decimals": 8,
+      "logoURI": "https://dex.dextop.pro/images/tokens/0x2b591e99afE9f32eAA6214f7B7629768c40Eeb39.png"
+    },
+    {
+      "name": "USD Coin from Ethereum",
+      "symbol": "USDC",
+      "address": "0x15D38573d2feeb82e7ad5187aB8c1D52810B1f07",
+      "chainId": 369,
+      "decimals": 6,
+      "logoURI": "https://dex.dextop.pro/images/tokens/0x15D38573d2feeb82e7ad5187aB8c1D52810B1f07.png"
+    },
+    {
+      "name": "Hex Orange Address",
+      "symbol": "HOA",
+      "address": "0x7901a3569679AEc3501dbeC59399F327854a70fe",
+      "chainId": 369,
+      "decimals": 18,
+      "logoURI": "https://tokens.dextop.pro/tokens/0x7901a3569679AEc3501dbeC59399F327854a70fe.png"
+    },
+    {
+      "name": "Teddy bear",
+      "symbol": "TED",
+      "address": "0xd6c31bA0754C4383A41c0e9DF042C62b5e918f6d",
+      "chainId": 369,
+      "decimals": 18,
+      "logoURI": "https://dex.dextop.pro/images/tokens/0xd6c31bA0754C4383A41c0e9DF042C62b5e918f6d.png"
+    },
+    {
+      "name": "USDL",
+      "symbol": "USDL",
+      "address": "0x0dEEd1486bc52aA0d3E6f8849cEC5adD6598A162",
+      "chainId": 369,
+      "decimals": 18,
+      "logoURI": "https://tokens.dextop.pro/tokens/usdl.png"
+    }
+  ]
+}
