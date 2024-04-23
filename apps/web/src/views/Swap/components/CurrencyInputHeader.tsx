@@ -87,6 +87,19 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
       <Flex flexDirection="row" alignItems="center" width="100%" marginBottom={15}>
         <Swap.CurrencyInputHeaderTitle>{title}</Swap.CurrencyInputHeaderTitle>
         <Flex width="100%" justifyContent="end">
+          <Flex width="100%" justifyContent="end">
+            {isChartSupported && setIsChartDisplayed && (
+              <ColoredIconButton
+                onClick={() => {
+                  toggleChartDisplayed()
+                }}
+                variant="text"
+                scale="sm"
+              >
+                {isChartDisplayed ? <ChartDisableIcon color="textSubtle" /> : <ChartIcon width="24px" color="textSubtle" />}
+              </ColoredIconButton>
+            )}
+          </Flex>
           <NotificationDot show={expertMode}>
             <GlobalSettings color="textSubtle" mr="0" mode={SettingsMode.SWAP_LIQUIDITY} />
           </NotificationDot>
@@ -100,48 +113,6 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
       </Flex>
       {/* <Flex justifyContent="start" width="100%" height="17px" alignItems="center" mb="14px">
         <Swap.CurrencyInputHeaderSubTitle>{subtitle}</Swap.CurrencyInputHeaderSubTitle>
-      </Flex> */}
-      {/* <Flex width="100%" justifyContent="end">
-        {isChartSupported && setIsChartDisplayed && (
-          <ColoredIconButton
-            onClick={() => {
-              if (!isChartDisplayed && isSwapHotTokenDisplay) {
-                setIsSwapHotTokenDisplay(false)
-              }
-              toggleChartDisplayed()
-            }}
-            variant="text"
-            scale="sm"
-          >
-            {isChartDisplayed ? <ChartDisableIcon color="textSubtle" /> : <ChartIcon width="24px" color="textSubtle" />}
-          </ColoredIconButton>
-        )}
-        <ColoredIconButton
-          variant="text"
-          scale="sm"
-          onClick={() => {
-            if (!isSwapHotTokenDisplay && isChartDisplayed) {
-              toggleChartDisplayed()
-            }
-            setIsSwapHotTokenDisplay(!isSwapHotTokenDisplay)
-          }}
-        >
-          {isSwapHotTokenDisplay ? (
-            <HotDisableIcon color="textSubtle" width="24px" />
-          ) : (
-            <>
-              <TooltipText
-                ref={targetRef}
-                onClick={() => setMobileTooltipShow(false)}
-                display="flex"
-                style={{ justifyContent: 'center' }}
-              >
-                <HotIcon color="textSubtle" width="24px" />
-              </TooltipText>
-              {tooltipVisible && (!isMobile || mobileTooltipShow) && tooltip}
-            </>
-          )}
-        </ColoredIconButton>
       </Flex> */}
     </Flex>
   )

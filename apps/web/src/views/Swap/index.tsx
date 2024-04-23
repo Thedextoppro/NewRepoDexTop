@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
-import { useEffect, useMemo, useState, CSSProperties } from 'react'
+import { useEffect, useMemo, useState, CSSProperties, useContext } from 'react'
 import { ChainId, Currency } from '@pancakeswap/sdk'
-import { Box, Flex, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { BottomDrawer, Box, Flex, useMatchBreakpoints } from '@pancakeswap/uikit'
 import Footer from 'components/Menu/Footer'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { EXCHANGE_DOCS_URLS } from 'config/constants'
@@ -22,6 +22,8 @@ import SwapForm from './components/SwapForm'
 import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 
 import { getPairInformationByChain } from "dexscreener-api"
+import { SwapFeaturesContext } from './SwapFeaturesContext'
+import PriceChartContainer from './components/Chart/PriceChartContainer'
 
 const CHART_SUPPORT_CHAIN_IDS = [ChainId.PULSE]
 export const ACCESS_TOKEN_SUPPORT_CHAIN_IDS = [ChainId.PULSE]
@@ -56,9 +58,11 @@ export const gradientOverlayStyle: CSSProperties = {
 export default function Swap() {
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
-  const [isChartExpanded, setIsChartExpanded] = useState(false)
+  const { isChartExpanded, isChartDisplayed, setIsChartDisplayed, setIsChartExpanded, isChartSupported } =
+    useContext(SwapFeaturesContext)
+  // const [isChartExpanded, setIsChartExpanded] = useState(false)
   const [userChartPreference, setUserChartPreference] = useExchangeChartManager(isMobile)
-  const [isChartDisplayed, setIsChartDisplayed] = useState(userChartPreference)
+  // const [isChartDisplayed, setIsChartDisplayed] = useState(userChartPreference)
 
   const { account } = useActiveWeb3React()
   const DEXCurrency = useCurrency(pulseChainTokens?.xfn?.address)
@@ -80,6 +84,13 @@ export default function Swap() {
   } = useSwapState()
   const inputCurrency = useCurrency(inputCurrencyId)
   const outputCurrency = useCurrency(outputCurrencyId)
+
+  const currencies: { [field in Field]?: Currency } = {
+    [Field.INPUT]: inputCurrency ?? undefined,
+    [Field.OUTPUT]: outputCurrency ?? undefined,
+  }
+
+  const singleTokenPrice = useSingleTokenSwapInfo(inputCurrencyId, inputCurrency, outputCurrencyId, outputCurrency)
 
   const [DEXStats, setDEXStats] = useState<any>('')
   const [DEXPrice, setDEXPrice] = useState(0)
@@ -127,9 +138,9 @@ export default function Swap() {
     const decimalPointIndex = formattedString.indexOf(".");
     if (decimalPointIndex !== -1) {
       // Calculate ASCII code for corresponding letter character
-      let charCode = 97 + parseInt(formattedString[decimalPointIndex-1]);
+      let charCode = 97 + parseInt(formattedString[decimalPointIndex - 1]);
       // Replace decimal point and leading number with the calculated letter to encode a digit with a decimal point
-      formattedString = formattedString.replace(formattedString[decimalPointIndex-1] + ".", String.fromCharCode(charCode));
+      formattedString = formattedString.replace(formattedString[decimalPointIndex - 1] + ".", String.fromCharCode(charCode));
     }
 
     return formattedString + suffix;
@@ -150,7 +161,7 @@ export default function Swap() {
   useEffect(() => {
     fetchDEXStats();
     const interval = setInterval(fetchDEXStats, 30000);
-    return () => clearInterval(interval) ;
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -162,17 +173,48 @@ export default function Swap() {
 
   return (
     // <div style={backgroundLogo}>
-    <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded} isSwap={false} style={{minHeight: "calc(100vh - 190px)"}}>
+    <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
       <div style={gradientOverlayStyle}></div>
-      <Flex width="100%" justifyContent="center" position="relative">
-        <Flex flexDirection="column">
+      <Flex width={['328px', , '100%']} height="100%" justifyContent="center" position="relative">
+        {/* <Flex flexDirection="column"> */}
+          {!isMobile && isChartSupported && (
+            <PriceChartContainer
+              inputCurrencyId={inputCurrencyId}
+              inputCurrency={currencies[Field.INPUT]}
+              outputCurrencyId={outputCurrencyId}
+              outputCurrency={currencies[Field.OUTPUT]}
+              isChartExpanded={isChartExpanded}
+              setIsChartExpanded={setIsChartExpanded}
+              isChartDisplayed={isChartDisplayed}
+              currentSwapPrice={singleTokenPrice}
+            />
+          )}
+          {isChartSupported && (
+            <BottomDrawer
+              content={
+                <PriceChartContainer
+                  inputCurrencyId={inputCurrencyId}
+                  inputCurrency={currencies[Field.INPUT]}
+                  outputCurrencyId={outputCurrencyId}
+                  outputCurrency={currencies[Field.OUTPUT]}
+                  isChartExpanded={isChartExpanded}
+                  setIsChartExpanded={setIsChartExpanded}
+                  isChartDisplayed={isChartDisplayed}
+                  currentSwapPrice={singleTokenPrice}
+                  isMobile
+                />
+              }
+              isOpen={isChartDisplayed}
+              setIsOpen={setIsChartDisplayed}
+            />
+          )}
           <StyledSwapContainer $isChartExpanded={isChartExpanded}>
             <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'}>
               <AppBody>
                 <SwapForm
-                  // isAccessTokenSupported={isAccessTokenSupported}
-                  // setIsChartDisplayed={setIsChartDisplayed}
-                  // isChartDisplayed={isChartDisplayed}
+                // isAccessTokenSupported={isAccessTokenSupported}
+                // setIsChartDisplayed={setIsChartDisplayed}
+                // isChartDisplayed={isChartDisplayed}
                 />
               </AppBody>
             </StyledInputCurrencyWrapper>
@@ -183,7 +225,7 @@ export default function Swap() {
             </Box>
           )}
         </Flex>
-      </Flex>
+      {/* </Flex> */}
     </Page>
     // </div>
   )
